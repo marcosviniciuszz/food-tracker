@@ -1,0 +1,5 @@
+# Binários e executáveis
+*.exe
+
+# Arquivos de ambiente
+.env

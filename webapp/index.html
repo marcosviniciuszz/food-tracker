@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Food Tracker</h1>
+    </header>
+    <main>
+        <div class="card orange" id="pending-card">
+            <h2>Aguardando Confirmação</h2>
+            <ul id="pending-list"></ul>
+        </div>
+        <div class="card blue" id="confirmed-card">
+            <h2>Confirmado</h2>
+            <ul id="confirmed-list"></ul>
+        </div>
+        <div class="card yellow" id="preparation-card">
+            <h2>Em Preparo</h2>
+            <ul id="preparation-list"></ul>
+        </div>
+        <div class="card green" id="ready-card">
+            <h2>Pronto</h2>
+            <ul id="ready-list"></ul>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

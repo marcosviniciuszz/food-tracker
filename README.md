@@ -1,8 +1,8 @@
 # Food Tracker
 
-Criei este projeto para fortalecer meus conhecimentos em Go e utilizei MongoDB para persistência de dados. A API monitora novos pedidos feitos no IFood e, quando encontra um pedido, o insere no MongoDB. 
+Criei este projeto para fortalecer meus conhecimentos em Go e utilizei MongoDB para persistência de dados. A API monitora novos pedidos feitos no iFood, então quando encontra um novo pedido, insere no MongoDB. 
 
-O usuário pode então confirmar o pedido, informar que está em preparo e, por fim, marcar o pedido como pronto. (Tudo sendo atualizado em tempo real com o IFood e notificando o cliente)
+O usuário pode então confirmar o pedido, informar que está em preparo e depois marcar o pedido como pronto. (Tudo sendo atualizado em tempo real com o iFood e notificando o cliente)
 
 #### Funcionamento do projeto
 

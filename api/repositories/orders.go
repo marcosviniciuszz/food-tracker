@@ -6,7 +6,6 @@ import (
 	"food-tracker/database"
 
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -47,13 +46,7 @@ func (repo *OrderRepository) GetOrders(ctx context.Context) ([]bson.M, error) {
 }
 
 func (repo *OrderRepository) ConfirmOrder(ctx context.Context, id string) error {
-	// Convert to ObjectID
-	objectId, err := primitive.ObjectIDFromHex(id)
-	if err != nil {
-		return fmt.Errorf("invalid ID format")
-	}
-
-	filter := bson.M{"_id": objectId}
+	filter := bson.M{"orderId": id}
 	update := bson.M{"$set": bson.M{"status": "confirmed"}}
 
 	result, err := repo.collection.UpdateOne(ctx, filter, update)
@@ -69,13 +62,7 @@ func (repo *OrderRepository) ConfirmOrder(ctx context.Context, id string) error 
 }
 
 func (repo *OrderRepository) StartPreparation(ctx context.Context, id string) error {
-	// Convert to ObjectID
-	objectId, err := primitive.ObjectIDFromHex(id)
-	if err != nil {
-		return fmt.Errorf("invalid ID format")
-	}
-
-	filter := bson.M{"_id": objectId}
+	filter := bson.M{"orderId": id}
 	update := bson.M{"$set": bson.M{"status": "preparation"}}
 
 	result, err := repo.collection.UpdateOne(ctx, filter, update)
@@ -90,14 +77,8 @@ func (repo *OrderRepository) StartPreparation(ctx context.Context, id string) er
 	return nil
 }
 
-func (repo *OrderRepository) ReadyToPickup(ctx context.Context, id string) error {
-	// Convert to ObjectID
-	objectId, err := primitive.ObjectIDFromHex(id)
-	if err != nil {
-		return fmt.Errorf("invalid ID format")
-	}
-
-	filter := bson.M{"_id": objectId}
+func (repo *OrderRepository) Dispatch(ctx context.Context, id string) error {
+	filter := bson.M{"orderId": id}
 	update := bson.M{"$set": bson.M{"status": "ready"}}
 
 	result, err := repo.collection.UpdateOne(ctx, filter, update)

@@ -6,7 +6,7 @@ function getOrders() {
 
     clearAllItems()
 
-    fetch('http://localhost:8080/orders') // Substitua com a URL da sua API
+    fetch('http://localhost:8080/orders') 
         .then(response => response.json())
         .then(data => {
             if (Array.isArray(data)) {
@@ -25,7 +25,7 @@ function getOrders() {
                             button = document.createElement('button');
                             button.className = 'action-button';
                             button.textContent = 'Confirmar';
-                            button.onclick = () => handleAction(pedido._id, 'confirm');
+                            button.onclick = () => handleAction(pedido.orderId, 'confirm');
                             listItem.appendChild(button);
                             pendingList.appendChild(listItem);
                             break;
@@ -33,15 +33,15 @@ function getOrders() {
                             button = document.createElement('button');
                             button.className = 'action-button';
                             button.textContent = 'Iniciar Preparo';
-                            button.onclick = () => handleAction(pedido._id, 'startPrepare');
+                            button.onclick = () => handleAction(pedido.orderId, 'startPrepare');
                             listItem.appendChild(button);
                             confirmedList.appendChild(listItem);
                             break;
                         case 'preparation':
                             button = document.createElement('button');
                             button.className = 'action-button';
-                            button.textContent = 'Pronto para Retirada';
-                            button.onclick = () => handleAction(pedido._id, 'readyToPickup');
+                            button.textContent = 'Saiu pra Entrega';
+                            button.onclick = () => handleAction(pedido.orderId, 'dispatch');
                             listItem.appendChild(button);
                             preparationList.appendChild(listItem);
                             break;
@@ -83,8 +83,8 @@ function updateOrder(id, action) {
         case 'startPrepare':
             url = `http://localhost:8080/orders/${id}/startPrepare`;
             break;
-        case 'readyToPickup':
-            url = `http://localhost:8080/orders/${id}/readyToPickup`;
+        case 'dispatch':
+            url = `http://localhost:8080/orders/${id}/dispatch`;
             break;
         default:
             console.error('Ação desconhecida:', action);

@@ -94,7 +94,7 @@ func (f *FetcherService) fetchAndStore() error {
 		return nil
 	}
 
-	// nsert the data into the MongoDB
+	// Insert data into the MongoDB
 	var ids []map[string]string
 	for _, item := range data {
 		if err := f.repo.Insert(context.TODO(), item); err != nil {
